@@ -145,6 +145,7 @@ namespace W4
         {
             Console.WriteLine("Armstrong Number:");
             int reste10;
+
             int div10;
             int div100;
             int reste100;
@@ -171,7 +172,7 @@ namespace W4
                     reste10 = i % 10; 
                     reste100 = i % 100;
                     div10 = (reste100 - reste10)/10;
-                    div100 = i-reste100/ 100;
+                    div100 = (i-reste100)/ 100;
 
                     if (Math.Pow(reste10, 3) + Math.Pow(div10, 3)+Math.Pow(div100,3) == i)
                     {
@@ -179,6 +180,108 @@ namespace W4
                     }
 
                 }
+            }
+        }
+
+        static void Exo6()
+        {
+            Console.WriteLine("Exo 6");
+            int[] array = { 5, 7, 5, 2, 2, 4, 5 };
+            CounterArray(array);
+        }
+
+        static void CounterArray(int[]array)
+        {
+            int k;
+            int []temp=new int[array.Length];  
+            
+            for (int i=0; i<array.Length; i++)
+            {
+                temp[i] = -1;
+            }
+            int n = array.Length;
+            for(int i=0; i<n; i++)
+            {       
+                k = 1;
+                for(int j=i+1; j<n; j++)
+                {
+                    if(array[i]==array[j])
+                    {
+                        k++;
+                        temp[j] = 0;
+                    }
+                }
+
+                if(temp[i]!=0)
+                {
+                    temp[i] = k;
+                }
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                if (temp[i] != 0)
+                {
+                    Console.WriteLine(array[i] +" is " + temp[i] +" times ");
+                }
+            }
+
+        }
+
+        static void Exo7()
+        {
+            Console.WriteLine("Exo7");
+            Console.WriteLine("Enter a number");
+            int n = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Factorial of " + n + " is " + Factorial(n));
+        }
+
+        static int Factorial(int n)
+        {
+            int res = 1;
+            for (int i = 1; i <= n; i++)
+            {
+                res *= i;
+            }
+            return res;
+        }
+
+        static void Exo8()
+        {
+            Console.WriteLine("Exo8");
+            Console.WriteLine("Write a sentence");
+            string sentence = Convert.ToString(Console.ReadLine());
+            Console.WriteLine("The number of white spaces in a string is: "+CountSpace(sentence));
+        }
+
+        static int CountSpace(string sentence)
+        {
+            int space = 0;
+            for(int i = 0; i < sentence.Length; i++)
+            {
+                if (sentence[i]==' ')
+                {
+                    space++;
+                }
+            }
+            return space;
+        }
+
+        static void Exo9()
+        {
+            Console.WriteLine("Exo9");
+            Console.WriteLine("Think 3 names");
+            Person[] arrayName = new Person[3];
+           
+            for(int i = 0; i < arrayName.Length; i++)
+            {
+                Console.WriteLine("Write the " + (i+1) + " name"); 
+                arrayName[i] = new Person(Convert.ToString(Console.ReadLine())); ;
+            }
+
+            for(int i=0; i<arrayName.Length; i++)
+            {
+                Console.WriteLine("The " + (i + 1) + " name is " + arrayName[i].ToString());
             }
         }
         static int EnterNumber()
@@ -199,12 +302,7 @@ namespace W4
 
             if (keyInfo.Key != ConsoleKey.Escape)
             {
-                Console.WriteLine("Menu veuillez entrer le numero de votre choix:");
-                Console.WriteLine("Pour l'exercice 1, tapez 1");
-                Console.WriteLine("Pour l'exercice 2, tapez 2");
-                Console.WriteLine("Pour l'exercice 3, tapez 3");
-                Console.WriteLine("Pour l'exercice 4, tapez 4");
-                Console.WriteLine("Pour l'exercice 5, tapez 5");
+                Console.WriteLine("Main, choose the number of exercise:\n");
 
                 Console.WriteLine("Cliquez Escape pour terminer");
 
@@ -229,6 +327,22 @@ namespace W4
 
                     case 5:
                         Exo5();
+                        break;
+
+                    case 6:
+                        Exo6();
+                        break;
+
+                    case 7:
+                        Exo7();
+                        break;
+
+                    case 8:
+                        Exo8();
+                        break;
+
+                    case 9:
+                        Exo9();
                         break;
 
                     default:
