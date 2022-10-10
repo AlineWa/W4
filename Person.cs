@@ -14,7 +14,14 @@ namespace W4
         
         public Person(string name) 
         { 
-            this.name = name;
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentNullException("name must not be blank");
+            }
+            else
+            {
+                this.name = name;
+            }
         }
 
         public string Name
@@ -26,11 +33,6 @@ namespace W4
         public override string ToString()
         {
             return this.name;
-        }
-
-        ~Person()
-        {
-            Name = string.Empty;
         }
 
     }
